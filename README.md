@@ -8,6 +8,10 @@
 -  CSS
 -  JavaScript
 
+ ## 🌐 Links 
+
+-  🔗 [JOGAR](https://yleonardo99.github.io/Jogo-da-Forca/)
+  
 ## 🎮 Como Jogar
 
 -  1. Ao iniciar o jogo, uma palavra é escolhida aleatoriamente de um banco de 100 animais.
