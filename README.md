@@ -4,20 +4,20 @@
 
 ## 🛠️ Tecnologias Utilizadas
 
-- ** HTML
-- ** CSS
-- ** JavaScript
+-  HTML
+-  CSS
+-  JavaScript
 
 ## 🎮 Como Jogar
 
-- ** 1. Ao iniciar o jogo, uma palavra é escolhida aleatoriamente de um banco de 100 animais.
-- ** 2. Você deve tentar adivinhar a palavra, letra por letra.
-- ** 3. Cada erro adiciona uma parte ao desenho do forca.
-- ** 4. O jogo termina quando você adivinha a palavra ou perde todas as tentativas.
+-  1. Ao iniciar o jogo, uma palavra é escolhida aleatoriamente de um banco de 100 animais.
+-  2. Você deve tentar adivinhar a palavra, letra por letra.
+-  3. Cada erro adiciona uma parte ao desenho do forca.
+-  4. O jogo termina quando você adivinha a palavra ou perde todas as tentativas.
 
 ## 🖼️ Imagens do Jogo
 
-- ** Vitória 🏆: Quando você adivinha a palavra corretamente!
+- Vitória 🏆: Quando você adivinha a palavra corretamente!
 
 ![Vitória](https://github.com/yLeonardo99/Jogo-da-Forca/blob/main/Complements/Imagens/vitoria.png)
 
