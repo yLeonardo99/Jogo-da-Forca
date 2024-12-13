@@ -1,0 +1,248 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: radial-gradient(circle, rgb(178, 130, 233), rgb(87, 13, 117));
+  font-family: helvetica;
+  color: #ddd;
+  overflow: hidden;
+}
+
+h1 {
+  margin: 20px 0 0;
+}
+
+.box {
+  margin: auto;
+  padding: 20px;
+  position: relative;
+  width: 90%;
+  max-width: 450px;
+  height: auto;
+  text-align: center;
+  overflow: visible; /* Permite que o conteúdo saia da caixa, sem corte */
+}
+
+svg {
+  fill: transparent;
+  stroke: #222;
+  stroke-width: 4px;
+  stroke-linecap: round;
+  width: 100%;
+  max-width: 300px; /* Ajusta o tamanho máximo do boneco */
+  height: auto;
+  margin: 0 auto;
+  display: block;
+  position: relative;
+}
+
+.part {
+  display: block; /* Garante que as partes do boneco apareçam */
+}
+
+.wrong-letters {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.wrong-letters span {
+  margin: 0 3px;
+  font-size: 24px;
+}
+
+.word {
+  display: flex;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 0;
+  word-wrap: break-word; /* Quebra de linha automática */
+  word-break: break-word; /* Outra alternativa para quebrar as palavras longas */
+  text-align: center; /* Alinha o texto no centro */
+  width: 100%; /* Certifica-se de que o texto ocupa toda a largura disponível */
+  white-space: normal; /* Permite que a letra ocupe mais de uma linha, se necessário */
+}
+
+.letter {
+  margin: 0 3px;
+  width: 20px;
+  height: 50px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  border-bottom: 3px solid rgb(242, 245, 242);
+  white-space: normal; /* Permite a quebra da linha */
+}
+
+.popup {
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 15px 10px 3px rgba(0, 0, 0, 0.1);
+  font-size: 24px;
+  text-align: center;
+}
+
+.popup button {
+  padding: 12px 20px;
+  border-radius: 5px;
+  margin-top: 20px;
+  background: rgb(65, 3, 72);
+  color: rgb(254, 251, 251);
+  border: none;
+  outline: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.popup button:hover {
+  transform: scale(0.98);
+  background: rgb(254, 251, 251);
+  color: rgb(65, 3, 72);
+}
+
+.notification {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: none;
+  z-index: 1000;
+}
+
+.notification.show {
+  display: block;
+}
+
+.scoreboard {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.correct-count, .wrong-count {
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.reset-button {
+  padding: 10px 20px;
+  background-color: rgb(65, 3, 72);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.reset-button:hover {
+  background-color: rgb(254, 251, 251);
+  color: rgb(65, 3, 72);
+}
+
+/* Container dos GIFs (Vídeos de vitória e derrota) */
+.gif-container {
+  position: absolute;
+  top: 50%; /* Posiciona no meio da tela */
+  left: 50%; /* Centraliza horizontalmente */
+  transform: translate(-50%, -50%); /* Centraliza perfeitamente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 200px; /* Ajuste para largura específica */
+  height: auto;
+  z-index: 10;
+  display: none; /* Inicialmente oculto */
+}
+
+.gif {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+#vitoria-gif, #perdeu-gif {
+  display: none; /* Inicialmente escondidos */
+}
+
+.popup {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  font-size: 1.2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+  width: 300px;
+}
+
+button {
+  background-color: #6a4f99;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #5a3f89;
+}
+
+/* Ajustes para dispositivos móveis */
+@media (max-width: 480px) {
+  .box {
+    padding: 10px;
+    width: 100%;
+  }
+
+  svg {
+    max-width: 250px; /* Limita o tamanho máximo do boneco */
+    margin-left: 10px; /* Ajusta o posicionamento do boneco */
+  }
+
+  .gif-container {
+    width: 150px; /* Ajusta o tamanho da área do GIF */
+  }
+
+  .reset-button {
+    font-size: 14px; /* Ajusta o tamanho da fonte do botão reset */
+  }
+
+  .notification {
+    font-size: 14px; /* Ajusta o tamanho da fonte da notificação */
+    padding: 8px 16px;
+  }
+}

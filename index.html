@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Jogo da Forca</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+  <link rel="website icon" type="imagem" href="Complements/Imagens/Forca.png" />
+</head>
+<body>
+  <h1>JOGO DA FORCA</h1>
+
+  <p>Descubra a palavra - Digite uma letra:</p>
+  <p><strong>DICA:</strong> ANIMAL</p>
+
+  <div class="box">
+    <svg width="200" height="250">
+      <line x1="60" y1="20" x2="140" y2="20" />
+      <line x1="140" y1="20" x2="140" y2="50" />
+      <line x1="60" y1="20" x2="60" y2="230" />
+      <circle cx="140" cy="70" r="20" class="part" />
+      <line x1="140" y1="90" x2="140" y2="150" class="part" />
+      <line x1="140" y1="120" x2="120" y2="100" class="part" />
+      <line x1="140" y1="120" x2="160" y2="100" class="part" />
+      <line x1="140" y1="150" x2="120" y2="180" class="part" />
+      <line x1="140" y1="150" x2="160" y2="180" class="part" />
+    </svg>
+    
+    <div class="wrong-letters"></div>
+    <div class="word"></div>
+  </div>
+
+  <!-- GIFs de vitória e derrota dentro do contêiner -->
+  <div class="gif-container">
+    <video src="Complements/Video/Vitoria.mp4" class="gif" id="vitoria-gif" autoplay loop muted style="display:none;"></video>
+    <video src="Complements/Video/Perdeu.mp4" class="gif" id="perdeu-gif" autoplay loop muted style="display:none;"></video>
+  </div>
+
+  <div class="popup">
+    <p class="message"></p>
+    <p class="reveal-word"></p>
+    <button>Jogar Novamente</button>
+  </div>
+
+  <div class="notification">
+    <p>Você já digitou essa letra</p>
+  </div>
+
+  <div class="scoreboard">
+    <p class="correct-count">Vitórias: 0</p>
+    <p class="wrong-count"> Derrotas: 0</p>
+    <button class="reset-button">Resetar Placar</button> 
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
