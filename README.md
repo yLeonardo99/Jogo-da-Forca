@@ -8,7 +8,7 @@
 -  CSS
 -  JavaScript
 
- ## 🌐 Links 
+ ## 🌐 Link para Jogar 🎮
 
 -  🔗 [JOGAR](https://yleonardo99.github.io/Jogo-da-Forca/)
   
