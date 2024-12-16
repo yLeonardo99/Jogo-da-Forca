@@ -31,7 +31,6 @@
     <div class="word"></div>
   </div>
 
-  <!-- GIFs de vitória e derrota dentro do contêiner -->
   <div class="gif-container">
     <video src="Complements/Video/Vitoria.mp4" class="gif" id="vitoria-gif" autoplay loop muted style="display:none;"></video>
     <video src="Complements/Video/Perdeu.mp4" class="gif" id="perdeu-gif" autoplay loop muted style="display:none;"></video>
@@ -49,9 +48,19 @@
 
   <div class="scoreboard">
     <p class="correct-count">Vitórias: 0</p>
-    <p class="wrong-count"> Derrotas: 0</p>
-    <button class="reset-button">Resetar Placar</button> 
+    <p class="wrong-count">Derrotas: 0</p>
+    <button class="reset-button">Resetar Placar</button>
   </div>
+
+  <!-- Campo de entrada para dispositivos móveis -->
+  <input 
+    type="text" 
+    id="mobile-input" 
+    maxlength="1" 
+    placeholder="Digite uma letra"
+    autocomplete="off" 
+    style="display:none;" 
+  />
 
   <script src="main.js"></script>
 </body>

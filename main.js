@@ -10,6 +10,7 @@ const parts = document.querySelectorAll(".part");
 const vitoriaGif = document.getElementById("vitoria-gif");
 const perdeuGif = document.getElementById("perdeu-gif");
 const gifContainer = document.querySelector(".gif-container");
+const mobileInput = document.getElementById("mobile-input");
 
 const words = [
   "elefante", "rato", "gato", "cachorro", "cobra", "coala", "cavalo", "castor", "crocodilo", "abelha", "alce",
@@ -24,7 +25,6 @@ const words = [
   "aranha", "falcão", "vagalume", "raposa", "guará", "tigre-dente-de-sabre", "ocelote", "cervo-almiscarado", "beagle",
   "jacaré", "maria-fumaça", "papagaio-do-mar", "ocelote", "codorna", "burro", "minhoca", "galo", "pavão", "lula"
 ];
-
 
 let selectedWord = words[Math.floor(Math.random() * words.length)];
 let playable = true;
@@ -65,11 +65,9 @@ function displayWord() {
     document.querySelector(".correct-count").textContent = `Vitórias: ${correctCount}`;
     playable = false;
 
-    // Espera 1 segundo e então mostra o box de Jogar Novamente
-
     setTimeout(() => {
       popup.style.display = "flex";
-      vitoriaGif.style.display = "none"; // Esconde o GIF de vitória após 1 segundo
+      vitoriaGif.style.display = "none";
     }, 1000);
   }
 }
@@ -88,8 +86,6 @@ function updateWrongLettersBox() {
     message.textContent = "Você Perdeu já foi melhor😜";
     revealWord.textContent = `Palavra Correta: ${selectedWord}`;
 
-    // Espera 2 segundo para mostrar o GIF de derrota
-    
     setTimeout(() => {
       perdeuGif.style.display = "block";
       perdeuGif.play();
@@ -97,83 +93,78 @@ function updateWrongLettersBox() {
       document.querySelector(".wrong-count").textContent = `Derrotas: ${wrongCount}`;
       playable = false;
 
-      // Espera 2 segundo e então mostra o box de Jogar Novamente
-
       setTimeout(() => {
         popup.style.display = "flex";
-        perdeuGif.style.display = "none"; // Esconde o GIF de derrota após 1 segundo
+        perdeuGif.style.display = "none";
       }, 2000);
-    }, 2000); // Aguarda 2 segundo para exibir o GIF de derrota
+    }, 2000);
   }
 }
 
 function showNotification() {
   notification.classList.add("show");
-
-  const timer = setTimeout(() => {
-    notification.classList.remove("show");
-    clearTimeout(timer);
-  }, 2000);
+  setTimeout(() => notification.classList.remove("show"), 2000);
 }
 
-document.addEventListener("keydown", (e) => {
+function handleInput(letter) {
   if (playable) {
-    if (e.keyCode >= 65 && e.keyCode <= 90) {
-      const letter = e.key.toLowerCase();
-
-      if (selectedWord.includes(letter)) {
-        if (!correctLetters.includes(letter)) {
-          correctLetters.push(letter);
-          displayWord();
-        } else {
-          showNotification();
-        }
+    if (selectedWord.includes(letter)) {
+      if (!correctLetters.includes(letter)) {
+        correctLetters.push(letter);
+        displayWord();
       } else {
-        if (!wrongLetters.includes(letter)) {
-          wrongLetters.push(letter);
-          updateWrongLettersBox();
-        } else {
-          showNotification();
-        }
+        showNotification();
+      }
+    } else {
+      if (!wrongLetters.includes(letter)) {
+        wrongLetters.push(letter);
+        updateWrongLettersBox();
+      } else {
+        showNotification();
       }
     }
   }
+}
+
+// Eventos para teclado físico
+document.addEventListener("keydown", (e) => {
+  if (e.keyCode >= 65 && e.keyCode <= 90) {
+    handleInput(e.key.toLowerCase());
+  }
 });
+
+// Campo de texto para dispositivos móveis
+mobileInput.addEventListener("input", (e) => {
+  const letter = e.target.value.toLowerCase();
+  if (letter.match(/[a-z]/)) {
+    handleInput(letter);
+    mobileInput.value = ""; // Limpa o campo após digitar
+  }
+});
+
+// Mostra campo para dispositivos móveis
+if (/Mobi|Android/i.test(navigator.userAgent)) {
+  mobileInput.style.display = "block";
+}
 
 playButton.addEventListener("click", () => {
   playable = true;
-
   correctLetters.splice(0);
   wrongLetters.splice(0);
-
   selectedWord = words[Math.floor(Math.random() * words.length)];
-  prefillSpecialCharacters(); // Preenche os hífens antes de exibir a palavra
+  prefillSpecialCharacters();
   displayWord();
   updateWrongLettersBox();
   popup.style.display = "none";
   gifContainer.style.display = "none";
-  vitoriaGif.style.display = "none";
-  perdeuGif.style.display = "none";
 });
 
 resetButton.addEventListener("click", () => {
   correctCount = 0;
   wrongCount = 0;
-
   document.querySelector(".correct-count").textContent = `Vitórias: ${correctCount}`;
   document.querySelector(".wrong-count").textContent = `Derrotas: ${wrongCount}`;
-
-  playable = true;
-  correctLetters.splice(0);
-  wrongLetters.splice(0);
-  selectedWord = words[Math.floor(Math.random() * words.length)];
-  prefillSpecialCharacters(); // Preenche os hífens antes de exibir a palavra
-  displayWord();
-  updateWrongLettersBox();
-  popup.style.display = "none";
-  gifContainer.style.display = "none";
-  vitoriaGif.style.display = "none";
-  perdeuGif.style.display = "none";
+  playButton.click();
 });
 
 // Inicializa o jogo
